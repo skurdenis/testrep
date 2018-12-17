@@ -1,0 +1,38 @@
+extends layout
+
+block variables
+  - var title = "Кабинет"
+
+block content
+  .row
+    .offset-sm-2.col-sm-8
+      h2 Создать рецепт
+
+  if post != undefined
+    .row
+      .offset-sm-2.col-sm-8
+        .alert.alert-success(role="alert").text-center
+          p Добавлено удачно! #[a(href="/" + post.slug) Посмотреть?]
+
+  .row
+    .offset-sm-2.col-sm-8
+      form(method="post")
+        .form-group
+          label(for="title") Название
+          input.form-control#title(type="text", name="title", placeholder="Название", required)
+        .form-group
+          label(for="body") Описание
+          textarea.form-control#post(name="body", rows="6", required)
+        button.btn.btn-primary.submit-btn(type="submit") Отправить
+
+  .row
+    .offset-sm-2.col-sm-8
+      h2.your-posts Ваши рецепты
+      ul.edit
+        each post in posts
+          li
+            a(href="/" + post.slug, title=post.title)= post.title
+            form.hidden(method="post", action="/" + post.slug + "/delete")
+              button.btn.btn-outline-danger.delete Удалить
+            a(href="/" + post.slug + "/edit", title=post.title)
+              button.btn.btn-outline-secondary Изменить

@@ -1,0 +1,23 @@
+extends layout
+
+block variables
+  - var title = post.title
+
+block content
+  h2.text-center Изменить
+
+  .row
+    .offset-sm-2.col-sm-8
+      form(method="post")
+        .form-group
+          label(for="title") Название
+          input.form-control#title(type="text", name="title", value=post.title, required)
+        .form-group
+          label(for="body") Описание
+          textarea.form-control#post(name="body", rows="6", required)= post.body
+        button.btn.btn-primary.submit-btn(type="submit") Обновить
+
+  .row
+    .offset-sm-2.col-sm-8
+      .body !{post.body}
+      p.author Написано #{post.authorName}

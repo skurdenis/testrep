@@ -1,0 +1,10 @@
+extends layout
+
+block variables
+  - var title = "Unauthenticated"
+
+block content
+  .unauthenticated
+    h2.text-center Упс!
+    p.
+      Залогиньтесь! #[a(href="/users/login", title="Login") login]
